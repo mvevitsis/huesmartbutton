@@ -19,7 +19,7 @@ import groovy.json.JsonOutput
 import physicalgraph.zigbee.zcl.DataType
 
 metadata {
-    definition (name: "Hue Smart Button", namespace: "circlefield05082", author: "Matvei Vevitsis", mnmn: "SmartThingsCommunity") {
+    definition (name: "Hue Smart Button", namespace: "circlefield05082", author: "Matvei Vevitsis", mnmn: "SmartThingsCommunity", vid: "03f89b0d-2bd5-313d-a096-78981c1cbaa2") {
         capability "Actuator"
         capability "Battery"
         capability "Button"
