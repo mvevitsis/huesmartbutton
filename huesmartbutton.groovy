@@ -98,17 +98,17 @@ private Map parseNonIasButtonMessage(Map descMap){
     }
     else if (descMap.clusterInt == 0x0008) {
         if (descMap.command == "02") {
-        	if (holdCount == 0){
+        	if (state.holdCounter == 0){
 			buttonState = "held"
             } else {
             log.debug "Blocking additional holds..."
             }
-            holdCount = holdCount + 1
-            log.debug "Hold count is $holdCount"
+            state.holdCounter = state.holdCounter + 1
+            log.debug "Hold count is $state.holdCounter"
 		} else if (descMap.command == "03") {
         	buttonState = "released"
-            holdCount = 0
-            log.debug "Hold count has been reset to $holdCount"
+            state.holdCounter = 0
+            log.debug "Hold count has been reset to $state.holdCounter"
 		}
     } 
     if (buttonState){
@@ -144,8 +144,8 @@ def updated() {
 }
 
 def initialize() {
-	def holdCount = 0 
-    log.debug "Initializing holdCount..."
+    log.debug "Initializing holdCounter..."
+    state.holdCounter = 0 
     def numberOfButtons = 1
     sendEvent(name: "supportedButtonValues", value: ["pushed","held"].encodeAsJson(), displayed: false)
 	sendEvent(name: "numberOfButtons", value: numberOfButtons, displayed: false)
